@@ -66,6 +66,8 @@ governing permissions and limitations under the License.
   &:focus-ring {
     border-color: transparent;
     box-shadow: none;
+    /* TODO: remove, just for testing until the Card structure is finalized */
+    background: grey;
     .spectrum-Card-preview {
       background-color: var(--spectrum-card-quiet-preview-background-color);
 

@@ -10,12 +10,34 @@
  * governing permissions and limitations under the License.
  */
 
-import React, {ReactElement} from 'react';
-import {PartialNode} from '@react-stately/collections';
 
-function Card<T>(props): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
-  return null;
+import {DOMRef} from '@react-types/shared';
+import {PartialNode} from '@react-stately/collections';
+import React, {useContext} from 'react';
+import {SpectrumCardProps} from '@react-types/cards';
+import {CardViewContext} from './CardView';
+import {CardBase} from './CardBase'
+
+// TODO confirm that this is the approach we wanna take
+// Problems with attaching a ref
+function Card(props: SpectrumCardProps, ref: DOMRef<HTMLDivElement>) {
+  let context = useContext(CardViewContext);
+  console.log('cntext', context)
+  if (context !== null) {
+    console.log('returning null')
+    return null;
+  } else {
+    console.log('returning base')
+    return (
+      <CardBase {...props} />
+    );
+  }
 }
+
+
+// function Card<T>(props): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
+//   return null;
+// }
 
 Card.getCollectionNode = function* getCollectionNode<T>(props, context: any): Generator<PartialNode<T>> {
   let {children} = props;
@@ -29,6 +51,14 @@ Card.getCollectionNode = function* getCollectionNode<T>(props, context: any): Ge
   };
 };
 
+
+// TODO: Ask about the below, if we export as forwardRef it breaks CollectionBuilder and if we export as is it breaks Rob's stories
 // We don't want getCollectionNode to show up in the type definition
-let _Card = Card as <T>(props) => JSX.Element;
+let _Card = Card as <T>(props, ref) => JSX.Element;
 export {_Card as Card};
+
+// /**
+//  * TODO: Add description of component here.
+//  */
+//  const _Card = React.forwardRef(Card);
+//  export {_Card as Card};

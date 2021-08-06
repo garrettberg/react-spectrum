@@ -7,14 +7,15 @@ import {SpectrumCardProps} from '@react-types/cards';
 import styles from '@adobe/spectrum-css-temp/components/card/vars.css';
 import {useCard} from '@react-aria/cards';
 import {useProviderProps} from '@react-spectrum/provider';
+import {FocusRing} from '@react-aria/focus';
 
 
 function CardBase(props: SpectrumCardProps, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
-  let {isQuiet, orientation = 'vertical'} = props;
+  let {isQuiet, orientation = 'vertical', articleProps} = props;
   let {styleProps} = useStyleProps(props);
   let {cardProps, titleProps, contentProps} = useCard(props);
-  let domRef = useDOMRef(ref);
+  // let domRef = useDOMRef(ref);
   let gridRef = useRef();
 
   let hasFooter = useHasChild(`.${styles['spectrum-Card-footer']}`, gridRef);
@@ -32,23 +33,29 @@ function CardBase(props: SpectrumCardProps, ref: DOMRef<HTMLDivElement>) {
   }), [titleProps, contentProps]);
 
   return (
-    <article
-      {...filterDOMProps(props)}
-      {...cardProps}
-      {...styleProps}
-      ref={domRef}
-      className={classNames(styles, 'spectrum-Card', {
-        'spectrum-Card--default': !isQuiet && orientation !== 'horizontal',
-        'spectrum-Card--isQuiet': isQuiet && orientation !== 'horizontal',
-        'spectrum-Card--horizontal': orientation === 'horizontal'
-      }, styleProps.className)}>
-      <div ref={gridRef} className={styles['spectrum-Card-grid']}>
-        <SlotProvider slots={slots}>
-          {props.children}
-          {hasFooter && <Divider />}
-        </SlotProvider>
-      </div>
-    </article>
+    <FocusRing
+      focusClass={classNames(styles, 'is-focused')}
+      focusRingClass={classNames(styles, 'focus-ring')}>
+      <article
+        {...filterDOMProps(props)}
+        {...cardProps}
+        {...styleProps}
+        {...articleProps}
+        ref={ref}
+        // ref={domRef}
+        className={classNames(styles, 'spectrum-Card', {
+          'spectrum-Card--default': !isQuiet && orientation !== 'horizontal',
+          'spectrum-Card--isQuiet': isQuiet && orientation !== 'horizontal',
+          'spectrum-Card--horizontal': orientation === 'horizontal',
+        }, styleProps.className)}>
+        <div ref={gridRef} className={styles['spectrum-Card-grid']}>
+          <SlotProvider slots={slots}>
+            {props.children}
+            {hasFooter && <Divider />}
+          </SlotProvider>
+        </div>
+      </article>
+    </FocusRing>
   );
 }
 
