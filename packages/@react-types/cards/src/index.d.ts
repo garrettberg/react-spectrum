@@ -30,3 +30,14 @@ interface CardViewProps<T> extends CollectionBase<T>, MultipleSelection, AsyncLo
 export interface AriaCardViewProps<T> extends CardViewProps<T>, DOMProps, AriaLabelingProps {}
 
 export interface SpectrumCardViewProps<T> extends AriaCardViewProps<T>, StyleProps {}
+
+interface AriaCardProps extends AriaLabelingProps {}
+
+interface SpectrumCardProps extends AriaCardProps, StyleProps, DOMProps {
+  children: ReactNode,
+  isQuiet?: boolean,
+  layout?: 'grid' | 'waterfall' | 'gallery',
+  size?: 'S' | 'M' | 'L',
+  // not needed for quiet cards
+  orientation?: 'horizontal' | 'vertical'
+}

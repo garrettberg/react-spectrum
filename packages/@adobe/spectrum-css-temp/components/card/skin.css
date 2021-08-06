@@ -30,10 +30,6 @@ governing permissions and limitations under the License.
     background-color: var(--spectrum-alias-highlight-selected);
   }
 
-  .spectrum-Card-title {
-    color: var(--spectrum-alias-text-color);
-  }
-
   .spectrum-Card-subtitle {
     color: var(--spectrum-card-description-text-color);
   }
@@ -45,25 +41,23 @@ governing permissions and limitations under the License.
 
 .spectrum-Card-coverPhoto {
   background-color: var(--spectrum-card-coverphoto-background-color);
-  border-bottom-color: var(--spectrum-card-coverphoto-border-color);
+  border-block-end-color: var(--spectrum-card-coverphoto-border-color);
 }
 
 .spectrum-Card-footer {
   border-color: var(--spectrum-card-border-color);
 }
 
-.spectrum-Card--quiet,
+.spectrum-Card--isQuiet,
 .spectrum-Card--gallery {
   border-color: transparent;
   background-color: transparent;
 
-  .spectrum-Card-preview {
-    background-color: var(--spectrum-card-quiet-preview-background-color);
-  }
 
   &:hover {
     border-color: transparent;
-    .spectrum-Card-preview {
+    .spectrum-Card-image,
+    .spectrum-Card-illustration {
       background-color: var(--spectrum-card-quiet-preview-background-color-hover);
     }
   }

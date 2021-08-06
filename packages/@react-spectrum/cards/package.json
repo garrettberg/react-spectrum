@@ -1,5 +1,5 @@
 {
-  "name": "@react-spectrum/card",
+  "name": "@react-spectrum/cards",
   "version": "3.0.0-alpha.1",
   "private": true,
   "description": "Spectrum UI components in React",
@@ -8,16 +8,23 @@
   "module": "dist/module.js",
   "types": "dist/types.d.ts",
   "source": "src/index.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "sideEffects": [
     "*.css"
   ],
   "targets": {
     "main": {
-      "includeNodeModules": ["@adobe/spectrum-css-temp"]
+      "includeNodeModules": [
+        "@adobe/spectrum-css-temp"
+      ]
     },
     "module": {
-      "includeNodeModules": ["@adobe/spectrum-css-temp"]
+      "includeNodeModules": [
+        "@adobe/spectrum-css-temp"
+      ]
     }
   },
   "repository": {
@@ -26,9 +33,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
+    "@react-aria/cards": "3.0.0-alpha.1",
     "@react-aria/utils": "^3.0.0",
+    "@react-spectrum/divider": "^3.1.2",
+    "@react-spectrum/layout": "^3.2.0",
     "@react-spectrum/utils": "^3.0.0",
-    "@react-types/card": "3.0.0-alpha.1",
+    "@react-types/cards": "3.0.0-alpha.1",
     "@react-types/shared": "^3.0.0"
   },
   "devDependencies": {
@@ -36,7 +46,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0-rc.1",
-    "@react-spectrum/provider": "^3.0.0-rc.1"
+    "@react-spectrum/provider": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"
