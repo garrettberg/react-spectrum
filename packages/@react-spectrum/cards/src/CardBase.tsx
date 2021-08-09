@@ -82,6 +82,7 @@ function CardBase(props: CardBaseProps, ref: DOMRef<HTMLDivElement>) {
   }), [titleProps, contentProps]);
 
   return (
+    // TODO: Focus ring in v2 only goes around preview for quiet varients, fix this for v3?
     <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
       <article
         {...styleProps}
@@ -96,7 +97,7 @@ function CardBase(props: CardBaseProps, ref: DOMRef<HTMLDivElement>) {
           'is-selected': isSelected
         }, styleProps.className)}>
         <div ref={gridRef} className={classNames(styles, 'spectrum-Card-grid')}>
-          {manager?.selectionMode !== 'none' && (
+          {manager && manager.selectionMode !== 'none' && (
             <div className={classNames(styles, 'spectrum-Card-checkboxWrapper')}>
               <Checkbox
                 isDisabled={isDisabled}
