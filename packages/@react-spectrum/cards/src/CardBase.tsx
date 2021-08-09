@@ -21,8 +21,7 @@ import {SpectrumCardProps} from '@react-types/cards';
 import styles from '@adobe/spectrum-css-temp/components/card/vars.css';
 import {useCard} from '@react-aria/cards';
 import {useCardViewContext} from './CardViewContext';
-import {useControlledState} from '@react-stately/utils';
-import {useFocusWithin, useHover, usePress} from '@react-aria/interactions';
+import {useFocusWithin, useHover} from '@react-aria/interactions';
 import {useProviderProps} from '@react-spectrum/provider';
 
 // can there be a selection checkbox when not in a grid?
@@ -33,8 +32,6 @@ interface CardBaseProps extends SpectrumCardProps {
   articleProps?: HTMLAttributes<HTMLElement>,
   item
 }
-
-
 
 function CardBase(props: CardBaseProps, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -107,8 +104,8 @@ function CardBase(props: CardBaseProps, ref: DOMRef<HTMLDivElement>) {
                 UNSAFE_className={classNames(styles, 'spectrum-Card-checkbox')}
                 isEmphasized
                 aria-label="select" />
-            </div>)
-          }
+            </div>
+          )}
           <SlotProvider slots={slots}>
             {props.children}
             {hasFooter && <Divider />}
